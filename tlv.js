@@ -63,17 +63,17 @@ function toBigSize (x) {
   if (x < 0n) throw new Error('Negative bigsize')
   if (x < 0xfd) {
     const buf = Buffer.alloc(1)
-    buf.writeUInt8(x)
+    buf.writeUInt8(Number(x))
     return buf
   } else if (x < 0x10000) {
     const buf = Buffer.alloc(3)
     buf.writeUInt8(0xfd)
-    buf.writeUInt16BE(x, 1)
+    buf.writeUInt16BE(Number(x), 1)
     return buf
   } else if (x < 0x100000000) {
     const buf = Buffer.alloc(5)
     buf.writeUInt8(0xfe)
-    buf.writeUInt32BE(x, 1)
+    buf.writeUInt32BE(Number(x), 1)
     return buf
   } else {
     const buf = Buffer.alloc(9)
